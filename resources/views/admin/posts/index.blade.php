@@ -19,11 +19,21 @@
                     <tbody>
                     @foreach ($posts as $post)
                         <tr>
-                            <td>{{$posts->id}}</td>
-                            <td>{{$posts->title}}</td>
-                            <td>{{substr($posts->content,0,30)}}</td>
-                            <td>{{$posts->slug}}</td>
-                            <td> </td>
+                            <td>{{$post->id}}</td>
+                            <td>{{$post->title}}</td>
+                            <td>{{substr($post->content,0,30)}}</td>
+                            <td>{{$post->slug}}</td>
+                            <td class="d-flex"> 
+                                <a href="{{route('admin.posts.show', $post->id)}}" class="btn btn-primary">Show</a>
+                                <a href="{{route('admin.posts.edit', $post->id)}}" class="btn btn-secondary mx-2">Edit</a>
+                                
+                                <form action="{{route('admin.posts.destroy', $post->id)}}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-danger">Remove</button>
+                                </form>
+                            </td>
                         </tr>
                         
                     @endforeach
