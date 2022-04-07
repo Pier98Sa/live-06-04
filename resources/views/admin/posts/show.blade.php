@@ -6,12 +6,14 @@
             <div class="col-md-12">
                 <h1>Visualizza post</h1>
 
-                <div><strong>Titolo</strong>{{$post->title}}</div>
-                <div><strong>Contentuto</strong>{{$post->title}}</div>
-                <div><strong>Titolo</strong>{{$post->title}}</div>
+                <div><strong>Titolo: </strong>{{$post->title}}</div>
+                <div><strong>Contentuto: </strong>{{$post->content}}</div>
+                <div><strong>Slug: </strong>{{$post->slug}}</div>
+                <div><strong>Categoria: </strong>{{$post->category->name}}</div>
+                
 
 
-                <a href="{{route('admin.posts.index')}}" class="btn btn-primary">Ritorna alal lista</a>
+                <a href="{{route('admin.posts.index')}}" class="btn btn-primary">Ritorna alla lista</a>
             </div>
         </div>
     </div>

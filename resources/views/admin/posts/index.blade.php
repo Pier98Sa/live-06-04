@@ -13,6 +13,7 @@
                         <th scope="col">Titolo</th>
                         <th scope="col">contenuto</th>
                         <th scope="col">slug</th>
+                        <th scope="col">Categoria</th>
                         <th scope="col">Azioni</th>
                     </tr>
                     </thead>
@@ -23,6 +24,7 @@
                             <td>{{$post->title}}</td>
                             <td>{{substr($post->content,0,30)}}</td>
                             <td>{{$post->slug}}</td>
+                            <td>{{$post->category->name}}</td>
                             <td class="d-flex"> 
                                 <a href="{{route('admin.posts.show', $post->id)}}" class="btn btn-primary">Show</a>
                                 <a href="{{route('admin.posts.edit', $post->id)}}" class="btn btn-secondary mx-2">Edit</a>
