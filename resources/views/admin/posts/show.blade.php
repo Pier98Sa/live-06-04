@@ -9,7 +9,13 @@
                 <div><strong>Titolo: </strong>{{$post->title}}</div>
                 <div><strong>Contentuto: </strong>{{$post->content}}</div>
                 <div><strong>Slug: </strong>{{$post->slug}}</div>
-                <div><strong>Categoria: </strong>{{$post->category->name}}</div>
+                <div><strong>Categoria: </strong>{{isset($post->category)? $post->category->name : '-'}}</div>
+                <div>
+                    <strong>Tags: </strong>
+                    @foreach ($post->tags as $tag)
+                    <span class="badge badge-primary">{{$tag->name}}</span>
+                    @endforeach
+                </div>
                 
 
 

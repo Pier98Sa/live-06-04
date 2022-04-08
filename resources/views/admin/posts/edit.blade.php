@@ -29,6 +29,24 @@
                   <textarea class='form-control' name="content" id="content" cols="30" rows="10">{{old('content', $post->content)}}</textarea>
                 </div>
 
+                @foreach ($tags as $tag)
+
+                  @if ($errors->any())
+                    <div class="custom-control custom-checkbox">
+                      <input name="tags[]" type="checkbox" class="custom-control-input" id="tag_{{$tag->id}}" value={{$tag->id}} {{in_array($tag->id, old('tags'))? 'checked': ''}}       >
+                      <label class="custom-control-label" for="tag_{{$tag->id}}">{{$tag->name}}</label>
+                    </div>
+                  
+                  @else
+                    <div class="custom-control custom-checkbox">
+                      <input name="tags[]" type="checkbox" class="custom-control-input" id="tag_{{$tag->id}}" value={{$tag->id}} {{( $post->tags->contains($tag) )? 'checked':''}}       >
+                      <label class="custom-control-label" for="tag_{{$tag->id}}">{{$tag->name}}</label>
+                    </div>
+                  @endif
+                  
+
+                @endforeach
+
                 <button type="submit" class="btn btn-primary">Salva</button>
               </form>
 

@@ -35,6 +35,7 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="mx-2"><a href="{{route('admin.home')}}">Dashbord</a></li>
                         <li class="mx-2"><a href="{{route('admin.posts.index')}}">Post</a></li>
+                        <li class="mx-2"><a href="{{route('admin.tag.index')}}">Tag</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
