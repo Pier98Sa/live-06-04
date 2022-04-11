@@ -10,10 +10,11 @@
                 <div><strong>Contentuto: </strong>{{$post->content}}</div>
                 <div><strong>Slug: </strong>{{$post->slug}}</div>
                 <div><strong>Categoria: </strong>{{isset($post->category)? $post->category->name : '-'}}</div>
+                <div><strong>Il post è stato scitto: </strong>{{$diffInDays}} giorni fa</div>
                 <div>
                     <strong>Tags: </strong>
                     @foreach ($post->tags as $tag)
-                    <span class="badge badge-primary">{{$tag->name}}</span>
+                    <span class="badge badge-primary">{{$tag->name}} </span>
                     @endforeach
                 </div>
                 

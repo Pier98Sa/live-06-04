@@ -14,7 +14,8 @@
                         </div>
                     @endif
 
-                    Ciao {{$user->name}} # {{$user->id}}
+                    Ciao {{$user->name}} # {{$user->id}} <br>
+                    <span>Alla fine del mese mancano : {{$diffInDays}} giorni</span>
                 </div>
             </div>
         </div>

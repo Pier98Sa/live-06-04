@@ -9,7 +9,7 @@
                 <div><strong>Tag: </strong>{{$tag->name}}</div>
                 <div><strong>Slug: </strong>{{$tag->slug}}</div>
                 <div>
-                    <strong>Tags: </strong>
+                    <strong>Post: </strong>
                     <ul>
                        @foreach ($tag->posts as $post)
                             <li >

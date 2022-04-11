@@ -6,6 +6,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use App\Post;
 use App\Tag;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\support\Str;
 
@@ -81,7 +82,10 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view ('admin.posts.show', compact('post'));
+        $now = Carbon::now()->timezone('Europe/Rome');
+        $postDateTime = Carbon::create($post->created_at)->timezone('Europe/Rome');
+        $diffInDays = $now->diffInDays($postDateTime);
+        return view ('admin.posts.show', compact('post', 'diffInDays'));
     }
 
     /**
