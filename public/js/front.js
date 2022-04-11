@@ -1929,19 +1929,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Main',
   data: function data() {
     return {
-      posts: []
+      posts: [],
+      currentPage: 1,
+      lastPage: null
     };
   },
   methods: {
-    getPosts: function getPosts() {
+    getPosts: function getPosts(apiPage) {
       var _this = this;
 
-      axios.get('/api/posts').then(function (response) {
-        _this.posts = response.data.results;
+      axios.get('/api/posts', {
+        'params': {
+          'page': apiPage
+        }
+      }).then(function (response) {
+        _this.currentPage = response.data.results.current_page;
+        _this.posts = response.data.results.data;
+        _this.lastPage = response.data.results.last_page;
       });
     }
   },
@@ -2491,6 +2506,54 @@ var render = function () {
         }),
         0
       ),
+      _vm._v(" "),
+      _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
+        _c("ul", { staticClass: "pagination" }, [
+          _c(
+            "li",
+            {
+              staticClass: "page-item",
+              class: _vm.currentPage == 1 ? "disabled" : "",
+            },
+            [
+              _c(
+                "span",
+                {
+                  staticClass: "page-link",
+                  on: {
+                    click: function ($event) {
+                      return _vm.getPosts(_vm.currentPage - 1)
+                    },
+                  },
+                },
+                [_vm._v("Precedente")]
+              ),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "page-item",
+              class: _vm.currentPage == _vm.lastPage ? "disabled" : "",
+            },
+            [
+              _c(
+                "span",
+                {
+                  staticClass: "page-link",
+                  on: {
+                    click: function ($event) {
+                      return _vm.getPosts(_vm.currentPage + 1)
+                    },
+                  },
+                },
+                [_vm._v("Successivo")]
+              ),
+            ]
+          ),
+        ]),
+      ]),
     ]),
   ])
 }
