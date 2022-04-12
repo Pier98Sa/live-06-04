@@ -15,8 +15,7 @@ class PostController extends Controller
      */
     public function index()
     {
-       $posts = Post::with(['category'])->get();//Laravel unisce anche la relatione con Category
-       $posts = Post::paginate(2);//impaginazione
+       $posts = Post::with(['category', 'tags'])->paginate(2);//impaginazione e Laravel unisce anche la relatione con Category
        
        return response()->json(
            [
@@ -24,5 +23,25 @@ class PostController extends Controller
             'success' => true
            ]
         );
+    }
+
+    public function show($slug){
+
+        $post = Post::where('slug', '=', $slug)->with(['category', 'tags'])->first();
+        if ($post){
+            return response()->json(
+                [
+                    'result' => $post,
+                    'success' => true
+                ],
+            );
+        }else{
+            return response()->json(
+                [
+                    'result' => 'Nessun risultato trovato',
+                    'success' => false
+                ]
+            );
+        }
     }
 }
