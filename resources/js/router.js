@@ -8,6 +8,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Posts from './pages/Posts';
 import SinglePost from './pages/SinglePost';
+import NotFound from './pages/NotFound';
 
 const router = new VueRouter({
     mode: "history",
@@ -28,14 +29,19 @@ const router = new VueRouter({
             component: Contact
         },
         {
-            path: '/posts',
-            name: 'posts',
+            path: '/blog',
+            name: 'blog',
             component: Posts
         },
         {
-            path: '/posts/:slug',
+            path: '/blog/:slug', // i ":" indicano una parte variabile
             name: 'single-post',
             component: SinglePost
+        },
+        {
+            path: '/*', //sintassi per il catch all, rotta da mettere sempre in fondo
+            name: 'not-found',
+            component: NotFound
         }
     ]
 });
