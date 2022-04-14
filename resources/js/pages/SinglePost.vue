@@ -4,6 +4,7 @@
       <div class="col-12">
         <div v-if="post">
           <h1>{{post.title}}</h1>
+          <img class="img-fluid" :src="post.cover" :alt="post.title">
           <h3 v-if="post.category">Categoria: {{post.category.name}}</h3>
           <p>{{post.content}}</p>
 
@@ -40,6 +41,7 @@ export default {
       if (response.data.success == false){
         this.$router.push({name: 'not-found'});
       }else{
+        console.log(response);
         this.post = response.data.result;
       }
     })

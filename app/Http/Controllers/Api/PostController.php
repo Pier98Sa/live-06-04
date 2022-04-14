@@ -13,21 +13,37 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-       $posts = Post::with(['category', 'tags'])->paginate(2); //impaginazione e Laravel unisce anche la relatione con Category
-       
-       return response()-> json(
-           [
-            'results' => $posts,
-            'success' => true
-           ]
-        );
-    }
 
+        $posts = Post::with(['category', 'tags'])->paginate(2);
+
+        $posts->each(function($post) {
+            if ($post->cover) {
+                $post->cover = url('storage/'.$post->cover);
+            } else {
+                $post->cover = url('img/fallback_img.jpg');
+            }
+        });
+
+        return response()->json(
+            [
+                'results' => $posts,
+                'success' => true
+            ]
+        );
+
+    }
     public function show($slug){
 
         $post = Post::where('slug', '=', $slug)->with( ['category', 'tags'])->first();
+
+        if ($post->cover) {
+            $post->cover = url('storage/'.$post->cover);
+        } else {
+            $post->cover = url('img/fallback_img.jpg');
+        }
+        
         if ($post){
             return response()-> json(
                 [

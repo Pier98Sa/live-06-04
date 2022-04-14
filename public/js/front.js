@@ -2011,9 +2011,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Post',
-  props: ['title', 'content', 'slug', 'category', 'tags'],
+  props: ['img', 'title', 'content', 'slug', 'category', 'tags'],
   data: function data() {
     return {
       strTroncateLen: 50
@@ -2158,6 +2159,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Main',
@@ -2227,6 +2229,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'SinglePost',
   data: function data() {
@@ -2244,6 +2247,7 @@ __webpack_require__.r(__webpack_exports__);
           name: 'not-found'
         });
       } else {
+        console.log(response);
         _this.post = response.data.result;
       }
     });
@@ -3533,6 +3537,11 @@ var render = function () {
       [
         _c("h2", { staticClass: "card-title" }, [_vm._v(_vm._s(_vm.title))]),
         _vm._v(" "),
+        _c("img", {
+          staticClass: "img-fluid",
+          attrs: { src: _vm.img, alt: "title" },
+        }),
+        _vm._v(" "),
         _c("h4", { staticClass: "card-text" }, [
           _vm._v(_vm._s(_vm.category ? _vm.category.name : " ")),
         ]),
@@ -3734,7 +3743,7 @@ var render = function () {
         _vm._l(_vm.posts, function (post) {
           return _c(
             "div",
-            { key: post.id, staticClass: "col-6" },
+            { key: post.id, staticClass: "col-6 " },
             [
               _c("Post", {
                 attrs: {
@@ -3743,6 +3752,7 @@ var render = function () {
                   slug: post.slug,
                   category: post.category,
                   tags: post.tags,
+                  img: post.cover,
                 },
               }),
             ],
@@ -3830,6 +3840,11 @@ var render = function () {
         _vm.post
           ? _c("div", [
               _c("h1", [_vm._v(_vm._s(_vm.post.title))]),
+              _vm._v(" "),
+              _c("img", {
+                staticClass: "img-fluid",
+                attrs: { src: _vm.post.cover, alt: _vm.post.title },
+              }),
               _vm._v(" "),
               _vm.post.category
                 ? _c("h3", [

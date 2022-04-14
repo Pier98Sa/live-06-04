@@ -29,6 +29,10 @@ Route::middleware('auth')
         Route::resource('tag', 'TagController');
     });
 
+Route::get('/phpinfo', function() {
+    phpinfo();
+});
+    
 // da mettere sempre alla fine dela lista
 Route::get("{any?}", function(){
     return view ("guests.home");
