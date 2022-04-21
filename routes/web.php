@@ -27,11 +27,12 @@ Route::middleware('auth')
 
         Route::resource('posts', 'PostController');
         Route::resource('tag', 'TagController');
-    });
 
-Route::get('/phpinfo', function() {
-    phpinfo();
-});
+        Route::get('user', 'UserController@edit')->name('user.edit');
+        Route::put('user', 'UserController@update')->name('user.update');
+
+        Route::get('user/getMyAvatar', 'UserController@getMyAvatar')->name('user.getMyAvatar');
+    });
     
 // da mettere sempre alla fine dela lista
 Route::get("{any?}", function(){
